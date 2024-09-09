@@ -91,7 +91,7 @@
       <Project>{fb002602-1b33-465b-9414-ad1a8fe98325}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Generate COA document\Generate COA document\Generate COA document.csproj">
+    <ProjectReference Include="..\..\Generate_COA_document\Generate COA document\Generate COA document.csproj">
       <Project>{21095ad0-a8d4-4ce8-8fe0-5f33e4eb694f}</Project>
       <Name>Generate COA document</Name>
     </ProjectReference>
