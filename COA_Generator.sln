@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COA_Generator", "COA_Genera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\General\Common\Common.csproj", "{A60242B9-5382-4A90-91F8-F390DA706AE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generate COA document", "..\Generate COA document\Generate COA document\Generate COA document.csproj", "{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "..\General\DAL\DAL.csproj", "{FB002602-1B33-465B-9414-AD1A8FE98325}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlService", "..\XmlService\XmlService\XmlService.csproj", "{FDEB5B86-264F-49D7-9B83-C96984228E18}"
@@ -16,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COAProcessing", "..\COAProcessing\COAProcessing\COAProcessing.csproj", "{6EA6C1BE-0381-40D2-84DA-933A4FBD8F30}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateFile4Client", "..\CreateFile4Client\CreateFile4Client\CreateFile4Client.csproj", "{BA788613-2642-4729-A749-4171CFEE133F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generate COA document V2", "..\Generate COA document V2\Generate COA document V2.csproj", "{A918F3E7-6CBA-4998-92CF-041EA852F50B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generate COA document", "..\Generate_COA_document\Generate COA document\Generate COA document.csproj", "{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +33,6 @@ Global
 		{A60242B9-5382-4A90-91F8-F390DA706AE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A60242B9-5382-4A90-91F8-F390DA706AE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A60242B9-5382-4A90-91F8-F390DA706AE7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB002602-1B33-465B-9414-AD1A8FE98325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB002602-1B33-465B-9414-AD1A8FE98325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB002602-1B33-465B-9414-AD1A8FE98325}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +49,14 @@ Global
 		{BA788613-2642-4729-A749-4171CFEE133F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA788613-2642-4729-A749-4171CFEE133F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA788613-2642-4729-A749-4171CFEE133F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A918F3E7-6CBA-4998-92CF-041EA852F50B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A918F3E7-6CBA-4998-92CF-041EA852F50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A918F3E7-6CBA-4998-92CF-041EA852F50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A918F3E7-6CBA-4998-92CF-041EA852F50B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21095AD0-A8D4-4CE8-8FE0-5F33E4EB694F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,6 +11,7 @@ using LSEXT;
 using LSSERVICEPROVIDERLib;
 using One1.Controls;
 using System.Diagnostics;
+using Generate_COA_document_V2;
 
 namespace COA_Generator
 {
@@ -20,8 +21,7 @@ namespace COA_Generator
     [ProgId("COA_Generator.COA_GeneratorAllSamples_English")]
     public class COA_GeneratorAllSamples_English : IEntityExtension
     {
-
-        private const bool ISENGLISH = true;
+        internal static List<CoaParameters> coaParametersList = new List<CoaParameters>();
 
         public ExecuteExtension CanExecute(ref IExtensionParameters Parameters)
         {
@@ -94,27 +94,27 @@ namespace COA_Generator
 
         public void GenerateCOAforSDg(List<string> sdgIds, INautilusServiceProvider sp)
         {
-            var common = new COAOperation(sp);
-            foreach (var sdgId in sdgIds)
+            try
             {
-                Sdg sdg = common.GetSdg(long.Parse(sdgId));
+                var common = new COAOperation(sp);
+                TimeHelper.MeasureExecutionTime(() =>
+                {
+                    foreach (var sdgId in sdgIds)
+                    {
+                        CoaHelper.CreateCoaEntity(sdgId, common, coaParametersList, true);
+                    }
+                }, "foreach CreateCoaEntity");
 
-                var loginCoa = common.LoginCOA("COA_GeneratorAllSamples", sdg, true, sdg.Name);
-               
-                if (loginCoa)
+                TimeHelper.MeasureExecutionTime(() =>
                 {
-                    //Retrieve new COA from nautilus.
-                    var newCoa = common.GetNewCoaName();
-                    //Updates other data
-                    common.UpdateNewSdgBySampleCoa(newCoa, long.Parse((sdg.SdgId.ToString())), ISENGLISH);
-                }
-                else
-                {
-                    One1.Controls.CustomMessageBox.Show("יצירת תעודה נכשלה , אנא פנה לתמיכה.", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
+                    foreach (var coa in coaParametersList)
+                    {
+                        common.UpdateNewRegularCoa(coa.NewCoa, coa.SdgId, true);
+                    }
+                }, "common.UpdateNewRegularCoa");
+                MessageBox.Show($"הושלמה יצירת תעודות");
             }
-          
+            catch (Exception ex) { Logger.WriteExceptionToLog(ex); }
         }
     }
 }

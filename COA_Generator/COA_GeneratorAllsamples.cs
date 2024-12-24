@@ -11,6 +11,7 @@ using LSEXT;
 using LSSERVICEPROVIDERLib;
 using One1.Controls;
 using System.Diagnostics;
+using Generate_COA_document_V2;
 
 namespace COA_Generator
 {
@@ -18,10 +19,11 @@ namespace COA_Generator
 
     [ComVisible(true)]
     [ProgId("COA_Generator.COA_GeneratorAllSamples")]
-    public class COA_GeneratorAllSamples : IEntityExtension
+    public class COA_GeneratorAllSamples : CoaHelper, IEntityExtension
     {
 
-        private const bool ISENGLISH = false;
+        internal static List<CoaParameters> coaParametersList = new List<CoaParameters>();
+
         public ExecuteExtension CanExecute(ref IExtensionParameters Parameters)
         {
             try
@@ -73,7 +75,6 @@ namespace COA_Generator
                 var records = Parameters["RECORDS"];
 
                 var sdgIds = new List<string>();
-         //       Debugger.Launch();
                 while (!records.EOF)
                 {
                     var sdgId = records.Fields["SDG_ID"].Value;
@@ -93,34 +94,30 @@ namespace COA_Generator
 
         public void GenerateCOAforSDg(List<string> sdgIds, INautilusServiceProvider sp)
         {
-            var common = new COAOperation(sp);
-            foreach (var sdgId in sdgIds)
+            try
             {
-                //Get specified sdg.
-                Sdg sdg = common.GetSdg(long.Parse(sdgId));
-
-
-                //foreach (var sample in sdg.Samples)
-                //{
-          
-            var loginCoa = common.LoginCOA("COA_GeneratorAllSamples", sdg, true, sdg.Name);
-             
-                if (loginCoa)
+                var common = new COAOperation(sp);
+                TimeHelper.MeasureExecutionTime(() =>
                 {
-                    //Retrieve new COA from nautilus.
-                    var newCoa = common.GetNewCoaName();
-                    //Updates other data
-                    common.UpdateNewSdgBySampleCoa(newCoa, long.Parse((sdg.SdgId.ToString())), ISENGLISH);
-                }
-                else
+                    foreach (var sdgId in sdgIds)
+                    {
+                        CreateCoaEntity(sdgId, common, coaParametersList, false);
+                    }
+                }, "foreach CreateCoaEntity");
+
+                TimeHelper.MeasureExecutionTime(() =>
                 {
-                    One1.Controls.CustomMessageBox.Show("יצירת תעודה נכשלה , אנא פנה לתמיכה.", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
+                    foreach (var coa in coaParametersList)
+                    {
+                        common.UpdateNewSdgBySampleCoa(coa.NewCoa, coa.SdgId, coa.IsEnglish);
+                    }
+                }, "common.UpdateNewSdgBySampleCoa");
+                MessageBox.Show($"הושלמה יצירת תעודות");
             }
-      
+            catch (Exception ex) {
 
-            //}
+                Logger.WriteExceptionToLog(ex);
+            }
         }
     }
 }

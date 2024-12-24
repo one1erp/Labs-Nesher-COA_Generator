@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>COA_Generator</RootNamespace>
     <AssemblyName>COA_Generator</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,9 +21,10 @@
     <OutputPath>..\..\dlls\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
     <RegisterForComInterop>true</RegisterForComInterop>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,13 +33,19 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Generate COA document, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dlls\Generate COA document.dll</HintPath>
+    </Reference>
     <Reference Include="One1.Controls">
       <HintPath>..\..\One1.Controls\One1.Controls\bin\Debug\One1.Controls.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Windows.Forms" />
@@ -48,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoaHelper.cs" />
     <Compile Include="COAOperation.cs" />
     <Compile Include="COA_foeEvrySampleEng.cs" />
     <Compile Include="COA_forEvrySample.cs" />
@@ -91,14 +100,17 @@
       <Project>{fb002602-1b33-465b-9414-ad1a8fe98325}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Generate_COA_document\Generate COA document\Generate COA document.csproj">
-      <Project>{21095ad0-a8d4-4ce8-8fe0-5f33e4eb694f}</Project>
-      <Name>Generate COA document</Name>
+    <ProjectReference Include="..\..\Generate COA document V2\Generate COA document V2.csproj">
+      <Project>{a918f3e7-6cba-4998-92cf-041ea852f50b}</Project>
+      <Name>Generate COA document V2</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\XmlService\XmlService\XmlService.csproj">
       <Project>{fdeb5b86-264f-49d7-9b83-c96984228e18}</Project>
       <Name>XmlService</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
