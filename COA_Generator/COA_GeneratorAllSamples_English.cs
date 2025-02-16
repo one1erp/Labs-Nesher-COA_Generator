@@ -112,7 +112,7 @@ namespace COA_Generator
                         common.UpdateNewRegularCoa(coa.NewCoa, coa.SdgId, true);
                     }
                 }, "common.UpdateNewRegularCoa");
-                MessageBox.Show($"הושלמה יצירת תעודות");
+
             }
             catch (Exception ex) { Logger.WriteExceptionToLog(ex); }
         }

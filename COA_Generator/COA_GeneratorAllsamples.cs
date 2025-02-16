@@ -112,7 +112,7 @@ namespace COA_Generator
                         common.UpdateNewSdgBySampleCoa(coa.NewCoa, coa.SdgId, coa.IsEnglish);
                     }
                 }, "common.UpdateNewSdgBySampleCoa");
-                MessageBox.Show($"הושלמה יצירת תעודות");
+
             }
             catch (Exception ex) {
 

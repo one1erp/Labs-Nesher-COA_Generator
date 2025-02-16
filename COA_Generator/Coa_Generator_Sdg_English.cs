@@ -95,23 +95,31 @@ namespace COA_Generator
         {
             try
             {
+
+                List<CoaParameters> localCoaList = new List<CoaParameters>();
+                string sdgIdsStr = string.Join(", ", sdgIds);
+                Logger.WriteInfoToLog($"GenerateCOAforSDg ENG called with SDG IDs: {sdgIdsStr}");
+                
+
                 var common = new COAOperation(sp);
                 TimeHelper.MeasureExecutionTime(() =>
                 {
                     foreach (var sdgId in sdgIds)
                     {
-                        CoaHelper.CreateCoaEntity(sdgId, common, coaParametersList, true);
+                        CoaHelper.CreateCoaEntity(sdgId, common, localCoaList, true);
                     }
                 }, "foreach CreateCoaEntity");
 
+                Logger.WriteInfoToLog("coaParametersList : " + coaParametersList.Count.ToString());
+
                 TimeHelper.MeasureExecutionTime(() =>
                 {
-                    foreach (var coa in coaParametersList)
+                    foreach (var coa in localCoaList)
                     {
                         common.UpdateNewRegularCoa(coa.NewCoa, coa.SdgId, true);
                     }
                 }, "common.UpdateNewRegularCoa");
-                MessageBox.Show($"הושלמה יצירת תעודות");
+                localCoaList.Clear();
             }
             catch (Exception ex) { Logger.WriteExceptionToLog(ex); }
         }
